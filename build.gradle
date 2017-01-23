@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"
+    }
+}
+
+repositories {
+    maven {
+        name "chickenbones"
+        url "http://chickenbones.net/maven/"
+    }
+}
+
+apply plugin: 'scala'
+apply plugin: 'forge'
+
+version = "0.0.1"
+group = "com.hephaestus_technologies.roads_rails"
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+}
+
+dependencies {
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
+    compile "codechicken:ForgeMultipart:1.7.10-1.2.0.345:dev"
+}
+
+sourceSets {
+    main {
+        def root = project.projectDir
+        scala {
+            srcDir new File(root, "src")
+        }
+        resources {
+            srcDir new File(root, "resources")
+        }
+    }
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
