@@ -1,37 +1,51 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'scala'
 
 repositories {
     maven {
         name "chickenbones"
         url "http://chickenbones.net/maven/"
     }
-}
 
-apply plugin: 'scala'
-apply plugin: 'forge'
+    maven {
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+}
 
 version = "0.0.1"
 group = "com.hephaestus_technologies.roads_rails"
+archivesBaseName = "RoadsAndRails"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
+    version = "1.12.2-14.23.5.2768"
     runDir = "run"
+    mappings = "snapshot_20171003"
 }
 
 dependencies {
-    compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
-    compile "codechicken:ForgeMultipart:1.7.10-1.2.0.345:dev"
+    compile "codechicken:CodeChickenLib:1.12.2-3.2.2.+:deobf"
+    compile "codechicken:ForgeMultipart:1.12.2-2.6.0.+:deobf"
+    compile "codechicken:ChickenASM:1.12-1.0.2.7"
+    deobfCompile "mezz.jei:jei_1.12.2:4.8.0.+:api"
+    runtime "mezz.jei:jei_1.12.2:4.8.0.+"
 }
 
 sourceSets {

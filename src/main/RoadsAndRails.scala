@@ -2,10 +2,12 @@
   * Created by floris on 1/16/17.
   */
 
-import cpw.mods.fml.common.Mod
-import cpw.mods.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent, FMLServerStartingEvent}
+package main
 
-@Mod(modid = "R&R", modLanguage = "scala")
+import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent, FMLServerStartingEvent}
+
+@Mod(modid = "roads_rails", name = "Roads & Rails", modLanguage = "scala")
 object RoadsAndRails
 {
   @Mod.EventHandler
