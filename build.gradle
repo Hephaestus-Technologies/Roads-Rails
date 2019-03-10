@@ -1,3 +1,11 @@
+def rr_version = version = "0.0.1"
+def mc_major_version     = "1.12"
+def mc_version_full      = "${mc_major_version}.2".toString()
+def forge_version        = "14.23.5.2768"
+def ccl_version          = "3.2.2"
+def fml_version          = "2.6.0"
+def jei_version          = "4.8.0"
+
 buildscript {
     repositories {
         jcenter()
@@ -25,8 +33,7 @@ repositories {
     }
 }
 
-version = "0.0.1"
-group = "com.hephaestus_technologies.roads_rails"
+group = "com.hephaestus_technologies"
 archivesBaseName = "RoadsAndRails"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -35,17 +42,17 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
+    version = "${mc_version_full}-${forge_version}"
     runDir = "run"
     mappings = "snapshot_20171003"
 }
 
 dependencies {
-    compile "codechicken:CodeChickenLib:1.12.2-3.2.2.+:deobf"
-    compile "codechicken:ForgeMultipart:1.12.2-2.6.0.+:deobf"
-    compile "codechicken:ChickenASM:1.12-1.0.2.7"
-    deobfCompile "mezz.jei:jei_1.12.2:4.8.0.+:api"
-    runtime "mezz.jei:jei_1.12.2:4.8.0.+"
+    compile "codechicken:CodeChickenLib:${mc_version_full}-${ccl_version}.+:deobf"
+    compile "codechicken:ForgeMultipart:${mc_version_full}-${fml_version}.+:deobf"
+    compile "codechicken:ChickenASM:${mc_major_version}-1.0.2.7"
+    deobfCompile "mezz.jei:jei_${mc_version_full}:${jei_version}.+:api"
+    runtime "mezz.jei:jei_${mc_version_full}:${jei_version}.+"
 }
 
 sourceSets {
@@ -62,12 +69,16 @@ sourceSets {
 
 processResources
 {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "version", rr_version
+    inputs.property "mcversion", mc_major_version
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand  'mod_version'  : rr_version,
+                'mc_version'   : mc_major_version,
+                'forge_version': forge_version,
+                'ccl_version'  : ccl_version,
+                'fmp_version'  : fml_version
     }
 
     from(sourceSets.main.resources.srcDirs) {

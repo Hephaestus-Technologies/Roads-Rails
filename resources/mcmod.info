@@ -1,0 +1,26 @@
+[
+    {
+        "modid": "roads_rails",
+        "name": "Roads & Rails",
+        "description": "",
+        "version": "${mod_version}",
+        "mcversion": "${mc_version}",
+        "url": "hephaestus-technologies.com/#projects/roads_rails",
+        "authorList": [
+            "Hephaestus Technologies"
+        ],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "requiredMods": [
+			"forge@[${forge_version},)",
+			"codechickenlib@[${ccl_version},)",
+			"forgemultipartcbe@[${fmp_version},)"
+        ],
+        "dependencies": [
+			"codechickenlib@[${ccl_version},)",
+			"forgemultipartcbe@[${fmp_version},)"
+        ],
+        "useDependencyInformation": true
+    }
+]

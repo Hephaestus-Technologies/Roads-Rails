@@ -7,7 +7,7 @@ package main
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent, FMLServerStartingEvent}
 
-@Mod(modid = "roads_rails", name = "Roads & Rails", modLanguage = "scala")
+@Mod(modid = "roads_rails", modLanguage = "scala")
 object RoadsAndRails
 {
   @Mod.EventHandler
